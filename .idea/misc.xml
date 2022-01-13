@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout-v28/item_type.xml" value="0.2604166666666667" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/activity_main.xml" value="0.4363636212309535" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_area.xml" value="0.12613521695257315" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_categories.xml" value="0.12613521695257315" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_filter.xml" value="0.12613521695257315" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_ingrediant.xml" value="0.12613521695257315" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_recipe.xml" value="0.1" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_search.xml" value="0.12613521695257315" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_type.xml" value="0.1" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/item_category.xml" value="0.18327272091700048" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/item_filter.xml" value="0.12613521695257315" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/item_list.xml" value="0.1" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/item_type.xml" value="0.21818181061547676" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24166666666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
