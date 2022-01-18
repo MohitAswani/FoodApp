@@ -55,4 +55,8 @@
             app:argType="string"
             android:defaultValue="Null" />
     </fragment>
+    <fragment
+        android:id="@+id/randomFragment"
+        android:name="com.example.foodapp.ui.fragments.RandomFragment"
+        android:label="RandomFragment" />
 </navigation>

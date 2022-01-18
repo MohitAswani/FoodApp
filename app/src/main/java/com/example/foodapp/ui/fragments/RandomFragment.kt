@@ -1,5 +1,6 @@
 package com.example.foodapp.ui.fragments
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.foodapp.R
-import com.example.foodapp.databinding.FragmentRecipeBinding
+import com.example.foodapp.databinding.FragmentRandomBinding
 import com.example.foodapp.models.Meal
 import com.example.foodapp.ui.MainActivity
 import com.example.foodapp.ui.viewModels.FoodViewModel
@@ -19,16 +19,15 @@ import com.example.foodapp.util.Resource
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.android.synthetic.main.fragment_recipe.*
 
-class RecipeFragment : Fragment(R.layout.fragment_recipe) {
 
+class RandomFragment : Fragment(R.layout.fragment_random) {
     companion object {
         const val TAG = "RecipeFragment"
     }
-    private lateinit var viewModel:FoodViewModel
-    private lateinit var binding:FragmentRecipeBinding
-    private val args:RecipeFragmentArgs by navArgs()
+
+    private lateinit var viewModel: FoodViewModel
+    private lateinit var binding: FragmentRandomBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
 
 
@@ -37,27 +36,26 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_recipe,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_random, container, false)
 
-        viewModel=(activity as MainActivity).viewModel
+        viewModel = (activity as MainActivity).viewModel
 
-        val id=args.recipeID
+        viewModel.getRandomRecipe()
 
-        viewModel.getRecipeById(id)
-
-        viewModel.recipes.observe(viewLifecycleOwner, Observer { response->
-            when(response){
-                is Resource.Success->{
+        viewModel.recipes.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
+                is Resource.Success -> {
                     hideProgressBar()
-                    response.data?.let{
-                        val meal= it.meals?.get(0)
+                    response.data?.let {
+                        val meal = it.meals?.get(0)
                         setRecipe(meal)
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let {
-                        Toast.makeText(requireContext(),"An error occurred", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "An error occurred", Toast.LENGTH_LONG)
+                            .show()
                     }
                 }
                 is Resource.Loading -> {
@@ -95,12 +93,11 @@ class RecipeFragment : Fragment(R.layout.fragment_recipe) {
     }
 
     private fun hideProgressBar() {
-        binding.recipeScrollView.visibility=View.VISIBLE
         binding.progressBar.visibility = View.INVISIBLE
     }
 
     private fun showProgressBar() {
-        binding.recipeScrollView.visibility=View.INVISIBLE
         binding.progressBar.visibility = View.VISIBLE
     }
+
 }

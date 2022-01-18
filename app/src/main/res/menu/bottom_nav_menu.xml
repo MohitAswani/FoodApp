@@ -15,6 +15,13 @@
         />
 
     <item
+        android:id="@+id/randomFragment"
+        android:title="Random"
+        android:icon="@drawable/ic_baseline_loop_24"
+        android:visible="true"
+        />
+
+    <item
         android:id="@+id/areaFragment"
         android:title="Area"
         android:icon="@drawable/ic_location_on"

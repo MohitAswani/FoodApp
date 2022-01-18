@@ -40,4 +40,8 @@ class FoodRepository {
     suspend fun getRecipeById(id:String): Response<RecipeResponse>{
         return RetrofitInstance.api.getRecipeById(id)
     }
+
+    suspend fun getRandomRecipe(): Response<RecipeResponse>{
+        return RetrofitInstance.api.getRandomRecipe()
+    }
 }

@@ -51,4 +51,8 @@ interface FoodApi {
         id:String
     ) : Response<RecipeResponse>
 
+    @GET("api/json/v1/1/random.php")
+    suspend fun getRandomRecipe(
+    ) : Response<RecipeResponse>
+
 }

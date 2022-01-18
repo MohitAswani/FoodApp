@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodapp.R
 import com.example.foodapp.adapters.FilterAdapter
@@ -40,6 +41,16 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         viewModel=(activity as MainActivity).viewModel
 
         setUpRecyclerView()
+
+        filterAdapter.setOnItemClickListener {
+            val bundle=Bundle().apply {
+                putString("RecipeID", it.idMeal)
+            }
+            findNavController().navigate(
+                R.id.action_searchFragment_to_recipeFragment,
+                bundle
+            )
+        }
 
         var job: Job?=null
         binding.etSearch.addTextChangedListener {
