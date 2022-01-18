@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/drawable-v24/etdrawable.xml" value="0.1" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/drawable/ic_search.xml" value="0.28072916666666664" />
+        <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout-v28/ic_search_1.xml" value="0.1" />
         <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout-v28/item_type.xml" value="0.2604166666666667" />
         <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/activity_main.xml" value="0.4363636212309535" />
         <entry key="..\:/CODING/Android_Dev/Practice/5_FoodApp/app/src/main/res/layout/fragment_area.xml" value="0.12613521695257315" />

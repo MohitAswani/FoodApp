@@ -41,6 +41,9 @@ class FilterAdapter:
                 .load(meal.strMealThumb)
                 .into(binding.rvImage)
             binding.rvTitle.text=meal.strMeal
+            binding.itemSource.setOnClickListener {
+                onItemClickListener?.let{it(meal)}
+            }
         }
     }
 

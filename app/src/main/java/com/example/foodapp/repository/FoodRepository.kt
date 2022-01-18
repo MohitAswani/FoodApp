@@ -3,7 +3,9 @@ package com.example.foodapp.repository
 import com.example.foodapp.api.RetrofitInstance
 import com.example.foodapp.models.CategoriesResponse
 import com.example.foodapp.models.FilterResponse
+import com.example.foodapp.models.RecipeResponse
 import retrofit2.Response
+import java.util.logging.Filter
 
 class FoodRepository {
 
@@ -29,5 +31,13 @@ class FoodRepository {
 
     suspend fun getAreaList(): Response<FilterResponse>{
         return RetrofitInstance.api.getAreaList()
+    }
+
+    suspend fun search(searchQuery:String): Response<FilterResponse>{
+        return RetrofitInstance.api.search(searchQuery)
+    }
+
+    suspend fun getRecipeById(id:String): Response<RecipeResponse>{
+        return RetrofitInstance.api.getRecipeById(id)
     }
 }

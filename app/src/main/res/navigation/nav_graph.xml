@@ -30,7 +30,11 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.foodapp.ui.fragments.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="com.example.foodapp.ui.fragments.FilterFragment"
@@ -38,5 +42,17 @@
         <argument
             android:name="Filter"
             app:argType="com.example.foodapp.models.FilterQuery" />
+        <action
+            android:id="@+id/action_filterFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.example.foodapp.ui.fragments.RecipeFragment"
+        android:label="RecipeFragment" >
+        <argument
+            android:name="RecipeID"
+            app:argType="string"
+            android:defaultValue="Null" />
     </fragment>
 </navigation>

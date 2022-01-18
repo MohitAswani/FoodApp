@@ -1,6 +1,7 @@
 package com.example.foodapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.example.foodapp.adapters.CategoriesAdapter
 import com.example.foodapp.adapters.FilterAdapter
 import com.example.foodapp.databinding.FragmentCategoriesBinding
 import com.example.foodapp.databinding.FragmentFilterBinding
+import com.example.foodapp.models.FilterQuery
 import com.example.foodapp.ui.MainActivity
 import com.example.foodapp.ui.viewModels.FoodViewModel
 import com.example.foodapp.util.Resource
@@ -57,8 +59,16 @@ class FilterFragment : Fragment(R.layout.fragment_filter) {
             }
         }
 
-        filterAdapter.setOnItemClickListener {
+        Log.d(TAG,"Inside filter fragment")
 
+        filterAdapter.setOnItemClickListener {
+            val bundle=Bundle().apply {
+                putString("RecipeID", it.idMeal)
+            }
+            findNavController().navigate(
+                R.id.action_filterFragment_to_recipeFragment,
+                bundle
+            )
         }
 
         viewModel.filters.observe(viewLifecycleOwner, Observer { response->

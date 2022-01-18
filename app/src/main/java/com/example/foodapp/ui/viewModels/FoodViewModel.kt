@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.foodapp.FoodApplication
 import com.example.foodapp.models.CategoriesResponse
 import com.example.foodapp.models.FilterResponse
+import com.example.foodapp.models.RecipeResponse
 import com.example.foodapp.repository.FoodRepository
 import com.example.foodapp.util.Resource
 import kotlinx.coroutines.launch
@@ -29,6 +30,9 @@ class FoodViewModel(
 
     val filters = MutableLiveData<Resource<FilterResponse>>()
     var filtersResponse: FilterResponse? = null
+
+    val recipes = MutableLiveData<Resource<RecipeResponse>>()
+    var recipeResponse: RecipeResponse? = null
 
     fun getCategories() = viewModelScope.launch {
         safeCategoriesCall()
@@ -69,7 +73,7 @@ class FoodViewModel(
     }
 
     private suspend fun safeIngredientListCall() {
-        categories.postValue(Resource.Loading())
+        filters.postValue(Resource.Loading())
 
         try {
             if (hasInternetConnection()) {
@@ -92,7 +96,7 @@ class FoodViewModel(
     }
 
     private suspend fun safeAreaListCall() {
-        categories.postValue(Resource.Loading())
+        filters.postValue(Resource.Loading())
 
         try {
             if (hasInternetConnection()) {
@@ -125,7 +129,7 @@ class FoodViewModel(
     }
 
     private suspend fun safeFilterByCategoryCall(filterQuery:String) {
-        categories.postValue(Resource.Loading())
+        filters.postValue(Resource.Loading())
 
         try {
             if (hasInternetConnection()) {
@@ -149,7 +153,7 @@ class FoodViewModel(
     }
 
     private suspend fun safeFilterByAreaCall(filterQuery:String) {
-        categories.postValue(Resource.Loading())
+        filters.postValue(Resource.Loading())
 
         try {
             if (hasInternetConnection()) {
@@ -171,7 +175,7 @@ class FoodViewModel(
     }
 
     private suspend fun safeFilterByIngredientCall(filterQuery:String) {
-        categories.postValue(Resource.Loading())
+        filters.postValue(Resource.Loading())
 
         try {
             if (hasInternetConnection()) {
@@ -190,7 +194,62 @@ class FoodViewModel(
 
     }
 
+    fun search(filterQuery:String) = viewModelScope.launch {
+        safeSearch(filterQuery)
+    }
+
+    private suspend fun safeSearch(filterQuery:String) {
+        filters.postValue(Resource.Loading())
+
+        try {
+            if (hasInternetConnection()) {
+                val response = repository.search(filterQuery)
+                filters.postValue(handleFilterResponse(response = response))
+            } else {
+                filters.postValue(Resource.Error(message = "No internet connection"))
+            }
+        } catch (t: Throwable) {
+            when (t) {
+                is IOException -> filters.postValue(Resource.Error(message = "Network failure"))
+                else -> filters.postValue(Resource.Error(message = "Conversion error"))
+            }
+        }
+    }
+
     private fun handleFilterResponse(response: Response<FilterResponse>): Resource<FilterResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let {
+                return Resource.Success(it)
+            }
+        }
+
+        return Resource.Error(message = response.message())
+    }
+
+
+    fun getRecipeById(id:String) = viewModelScope.launch {
+        safeGetRecipe(id)
+    }
+
+    private suspend fun safeGetRecipe(id:String){
+        recipes.postValue(Resource.Loading())
+
+        try {
+            if (hasInternetConnection()) {
+                val response = repository.getRecipeById(id)
+                recipes.postValue(handleRecipeResponse(response = response))
+            } else {
+                recipes.postValue(Resource.Error(message = "No internet connection"))
+            }
+        } catch (t: Throwable) {
+            when (t) {
+                is IOException -> recipes.postValue(Resource.Error(message = "Network failure"))
+                else -> recipes.postValue(Resource.Error(message = "Conversion error"))
+            }
+        }
+    }
+
+    private fun handleRecipeResponse(response: Response<RecipeResponse>): Resource<RecipeResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
                 return Resource.Success(it)

@@ -2,6 +2,7 @@ package com.example.foodapp.api
 
 import com.example.foodapp.models.CategoriesResponse
 import com.example.foodapp.models.FilterResponse
+import com.example.foodapp.models.RecipeResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -34,8 +35,20 @@ interface FoodApi {
 
     @GET("api/json/v1/1/filter.php")
     suspend fun getFilterByArea(
-        @Query("c")
+        @Query("a")
         area:String
     ) : Response<FilterResponse>
+
+    @GET("api/json/v1/1/search.php")
+    suspend fun search(
+        @Query("s")
+        searchQuery:String
+    ) : Response<FilterResponse>
+
+    @GET("api/json/v1/1/lookup.php")
+    suspend fun getRecipeById(
+        @Query("i")
+        id:String
+    ) : Response<RecipeResponse>
 
 }
