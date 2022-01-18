@@ -2,7 +2,7 @@
 
 This is a app to discover different dishes having different ingrediants, from different cuisines and even a random dish chooser. 
 
-This app uses the free meal api provided by https://www.themealdb.com/api.php. 
+This app uses the free meal api provided by https://www.themealdb.com/api.php and is based on the MVVM architecture. 
 
 ## Screenshots
 
